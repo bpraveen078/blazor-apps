@@ -1,8 +1,15 @@
 ﻿
-@page "/tasklist"
+@page "/"
 @inject HttpClient http
 
-<h3>TaskList</h3>
+<div class="row mb-2">
+	<div class="col-sm-6">
+		<h3>Tasks List</h3>
+	</div>
+	<div class="col-sm-6 text-right">
+		<a href="addtask" class="btn btn-outline-primary"><span class="oi oi-plus" aria-hidden="true"></span> Add Task</a>
+	</div>
+</div>
 
 @if (lstTasks == null)
 {
@@ -26,7 +33,14 @@ else
 					<td>@item.Title</td>
 					<td>@item.Description</td>
 					<td>@item.Completed</td>
-					<td>X</td>
+					<td>
+						<a href="addtask/@item.ID">
+							<span class="oi oi-delete" aria-hidden="true"></span>
+						</a>
+						<a href="addtask/@item.ID">
+							<span class="oi oi-pencil" aria-hidden="true"></span>
+						</a>
+					</td>
 				</tr>
 			}
 		</tbody>

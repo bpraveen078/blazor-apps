@@ -1,0 +1,37 @@
+﻿@page "/addtask/{Id:int}"
+@inject HttpClient http
+
+<h3>Add Task @Id</h3>
+<div >
+	<form>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label for="title">Title</label>
+					<input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Title">
+				</div>
+				<div class="form-group">
+					<label for="description">Description</label>
+					<input type="text" class="form-control" id="title" aria-describedby="description" placeholder="Description">
+				</div>
+				<div class="text-right">
+					<button type="button" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
+		</div>		
+	</form>
+</div>
+
+@code {
+
+	private ViewModels.TaskModel taskModel;
+	[Parameter]
+	public int Id { get; set; }
+	protected override async Task OnInitializedAsync()
+	{
+
+	}
+}
