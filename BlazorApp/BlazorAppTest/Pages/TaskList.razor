@@ -1,0 +1,52 @@
+﻿
+@page "/tasklist"
+@inject HttpClient http
+
+<h3>TaskList</h3>
+
+@if (lstTasks == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Complete</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in lstTasks)
+			{
+				<tr>
+					<td>@item.Title</td>
+					<td>@item.Description</td>
+					<td>@item.Completed</td>
+					<td>X</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code {
+
+	private ViewModels.TaskModel[] lstTasks;
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			lstTasks = await http.GetJsonAsync<ViewModels.TaskModel[]>("https://practiceapi.devmountain.com/api/tasks");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			throw;
+		}
+	}
+
+}
